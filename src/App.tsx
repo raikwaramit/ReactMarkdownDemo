@@ -8,12 +8,8 @@ import NavigationComponent from "./component/NavigationComponent";
 function App() {
   return (
     <div className="">
-      <div className="">
-        <NavigationComponent />
-      </div>
-      <div className="">
-        <Outlet />
-      </div>
+      <NavigationComponent />
+      <Outlet />
     </div>
   );
 }

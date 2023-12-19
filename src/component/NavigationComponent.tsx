@@ -38,6 +38,16 @@ export default function NavigationComponent() {
               Markdown editor
             </NavLink>
           </Button>{" "}
+          <Button color="inherit" sx={{ p: 0, m: 1 }}>
+            <NavLink
+              to="/codeeditor"
+              className={({ isActive }) =>
+                isActive ? " bg-blue-800 rounded-lg p-2" : " bg-inherit p-2"
+              }
+            >
+              Code editor
+            </NavLink>
+          </Button>{" "}
         </Toolbar>
       </AppBar>
     </Box>

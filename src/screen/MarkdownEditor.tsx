@@ -15,9 +15,6 @@ export default function MarkdownEditor(props: IMarkDownTypingScreeProps) {
   const inputRef = useRef<HTMLTextAreaElement>();
   const [areaText, setAreaText] = useState("");
   const [mdText, setMdText] = useState("");
-  const clickHandler = () => {
-    setMdText(areaText);
-  };
 
   const clearClickHandler = () => {
     setAreaText("");
@@ -28,16 +25,23 @@ export default function MarkdownEditor(props: IMarkDownTypingScreeProps) {
   return (
     <>
       <div className="flex justify-center items-center m-5 ">
-        <Button variant="contained" onClick={clickHandler} sx={{ mx: 2 }}>
-          Click To Markdown
-        </Button>
         <Button variant="contained" onClick={clearClickHandler} sx={{ mx: 2 }}>
           Clear
         </Button>
       </div>
       <div className="grid grid-cols-2 h-fit gap-6 bg-cover m-5 p-2 rounded-lg outline">
         <div className="grid-rows-2 justify-evenly m-5 rounded-sm flex-row">
-          <div className="py-2">Markdown input</div>
+          <div className="py-2">
+            Markdown input{" "}
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(areaText);
+              }}
+              sx={{ p: 0, mx: 2 }}
+            >
+              Copy
+            </Button>
+          </div>
           <TextareaAutosize
             minRows={20}
             maxRows={20}
@@ -46,12 +50,23 @@ export default function MarkdownEditor(props: IMarkDownTypingScreeProps) {
             autoFocus
             aria-multiline
             onChange={(e) => {
+              setMdText(e.target.value);
               setAreaText(e.target.value);
             }}
           />
         </div>
         <div className="grid-rows-2 justify-evenly m-5 rounded-sm flex-row">
-          <div className="py-2">Markdown output</div>
+          <div className="py-2">
+            Markdown output
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(mdText);
+              }}
+              sx={{ p: 0, mx: 2 }}
+            >
+              Copy
+            </Button>
+          </div>
           {mdText !== "" && (
             <ReactMarkdown
               className="flex rounded w-full p-4 outline-dashed"

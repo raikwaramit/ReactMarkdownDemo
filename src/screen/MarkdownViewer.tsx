@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import InputFileUpload from "../component/UploadButton";
-import ReactMarkdown from "react-markdown";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 export interface IMarkdownComponentProps {}
 
@@ -47,8 +47,11 @@ export default function MarkdownViewer(props: IMarkdownComponentProps) {
         </Button>
         <InputFileUpload handler={uploadButtonClickHandler} />
       </div>
-      <div className="flex m-3 outline h-4/5 rounded-md flex-row p-2 overflow-scroll">
-        <ReactMarkdown className="p-4">{md}</ReactMarkdown>
+      <div
+        className="flex m-3 outline h-4/5 rounded-md p-2 overflow-scroll"
+        data-color-mode="light"
+      >
+        <MarkdownPreview source={md} />
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import { Button, TextareaAutosize } from "@mui/material";
 import { useRef, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 export interface IMarkDownTypingScreeProps {}
 
@@ -68,12 +67,9 @@ export default function MarkdownEditor(props: IMarkDownTypingScreeProps) {
             </Button>
           </div>
           {mdText !== "" && (
-            <ReactMarkdown
-              className="flex rounded w-full p-4 outline-dashed"
-              remarkPlugins={[remarkGfm]}
-            >
-              {mdText}
-            </ReactMarkdown>
+            <div className=" outline rounded-md p-2" data-color-mode="light">
+              <MarkdownPreview source={mdText} />
+            </div>
           )}
         </div>
       </div>
